@@ -24,7 +24,7 @@ function tambah($data){
     $deskripsi = htmlspecialchars($data["deskripsi"]);
     $created_at = date('Y-m-d');
 
-    $query = "INSERT INTO produk VALUES ('', '$user_id', '$nama', '$deskripsi', '$created_at', '$created_at')";
+    $query = "INSERT INTO produk VALUES ('', '$user_id', '$nama', '$deskripsi', '$created_at')";
 
     mysqli_query($conn, $query);
 

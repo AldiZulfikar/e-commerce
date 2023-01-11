@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-    require 'controller/produkController.php';
+    require 'controller/transaksiController.php';
 	if(!isset($_SESSION['username'])){
 		header("location:login.php");
 	}
@@ -11,6 +11,60 @@
     INNER JOIN transaksi on detail_transaksi.no_invoice=transaksi.no_invoice
     ORDER BY detail_transaksi_id DESC");
     
+    if (isset($_POST['submit-pembayaran'])){
+        if(edit_pembayaran($_POST) > 0){
+            echo "
+                <script>
+                    alert('Data berhasil diubah');
+                    document.location.href = 'transaksi.php';
+                </script>
+            ";
+        }else{
+            echo "
+            <script>
+                alert('Data gagal diubah');
+                document.location.href = 'transaksi.php';
+            </script>
+            ";
+        }
+    }
+
+    if (isset($_POST['submit-pengiriman'])){
+        if(edit_pengiriman($_POST) > 0){
+            echo "
+                <script>
+                    alert('Data berhasil diubah');
+                    document.location.href = 'transaksi.php';
+                </script>
+            ";
+        }else{
+            echo "
+            <script>
+                alert('Data gagal diubah');
+                document.location.href = 'transaksi.php';
+            </script>
+            ";
+        }
+    }
+
+    if (isset($_POST['submit-resi'])){
+        if(edit_resi($_POST) > 0){
+            echo "
+                <script>
+                    alert('Data berhasil diubah');
+                    document.location.href = 'transaksi.php';
+                </script>
+            ";
+        }else{
+            echo "
+            <script>
+                alert('Data gagal diubah');
+                document.location.href = 'transaksi.php';
+            </script>
+            ";
+        }
+    }
+
 ?>
 
 
@@ -41,9 +95,10 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Produk</th>
-                                            <th>Total Harga</th>
+                                            <th>Total</th>
                                             <th>Pembeli</th>
                                             <th>Alamat</th>
+                                            <th>Tanggal</th>
                                             <th>Pembayaran</th>
                                             <th>Pengiriman</th>
                                             <th>No.Resi</th>
@@ -66,89 +121,122 @@
                                                         $row['alamat']
                                                 ?>
                                             </td>
+                                            <td><?php echo $row['created_at']?></td>
                                             <td style="text-align: center;">
-                                            <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#smallmodal">
+                                            <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#<?php echo $row['no_invoice']?>-pembayaran">
                                                 <i class="fa fa-picture-o"></i>
                                             </button>
-                                            <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="<?php echo $row['no_invoice']?>-pembayaran" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-sm" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="smallmodalLabel">Small Modal</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>
-                                                                There are three species of zebras: the plains zebra, the mountain zebra and the Grévy's zebra. The plains zebra
-                                                                and the mountain zebra belong to the subgenus Hippotigris, but Grévy's zebra is the sole species of subgenus
-                                                                Dolichohippus. The latter resembles an ass, to which it is closely related, while the former two are more
-                                                                horse-like. All three belong to the genus Equus, along with other living equids.
-                                                            </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                            <button type="button" class="btn btn-primary">Confirm</button>
-                                                        </div>
+                                                        <form action="" method="post">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="smallmodalLabel">Bukti Pembayaran <?php echo $row['nama_penerima']?></h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <img src="../upload/<?php echo $row['bukti_tf']?>" alt="">
+                                                                <label for="">Ubah Status Pembayaran</label>
+                                                                <select name="status" class="form-control">
+                                                                    <option value="0">Diproses</option>
+                                                                    <option value="1">Diterima</option>
+                                                                    <option value="2">Tidak Valid</option>
+                                                                </select>
+                                                                <input type="text" hidden name="no_invoice" value="<?php echo $row['no_invoice']?>">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                                <button type="submit" name="submit-pembayaran" class="btn btn-primary">Confirm</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                                 <?php 
                                                     if($row['status_pembayaran']==1){
                                                         echo '<br>Pembayaran Selesai';
+                                                    }else if($row['status_pembayaran']==2){
+                                                        echo '<br>Tidak Valid';
                                                     }else{
                                                         echo '<br>Diproses';
                                                     }
                                                 ?>
                                             </td>
                                             <td style="text-align: center;">
-                                            <button type="button" class="btn btn-secondary m-1" data-toggle="modal" data-target="#smallmodal">
+                                            <button type="button" class="btn btn-secondary m-1" data-toggle="modal" data-target="#<?php echo $row['no_invoice']?>-pengiriman">
                                                 <i class="fa fa-picture-o"></i>
                                             </button>
-                                            <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="<?php echo $row['no_invoice']?>-pengiriman" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-sm" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="smallmodalLabel">Small Modal</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>
-                                                                There are three species of zebras: the plains zebra, the mountain zebra and the Grévy's zebra. The plains zebra
-                                                                and the mountain zebra belong to the subgenus Hippotigris, but Grévy's zebra is the sole species of subgenus
-                                                                Dolichohippus. The latter resembles an ass, to which it is closely related, while the former two are more
-                                                                horse-like. All three belong to the genus Equus, along with other living equids.
-                                                            </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                            <button type="button" class="btn btn-primary">Confirm</button>
-                                                        </div>
+                                                        <form action="" method="post">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="smallmodalLabel">Status Pengiriman <?php echo $row['nama_penerima']?></h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <label for="">Ubah Status Pengiriman</label>
+                                                                <select name="status" class="form-control">
+                                                                    <option value="0">Dikemas</option>
+                                                                    <option value="1">Dalam Pengiriman</option>
+                                                                    <option value="2">Dikirim</option>
+                                                                </select>
+                                                                <input type="text" hidden name="no_invoice" value="<?php echo $row['no_invoice']?>">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                                <button type="submit" name="submit-pengiriman" class="btn btn-primary">Confirm</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                                 <?php 
                                                     if($row['status_pengiriman']==0){
-                                                        echo 'Dikemas';
+                                                        echo '<br>Dikemas';
                                                     }else if ($row['status_pengiriman']==1){
-                                                        echo 'Dalam Pengiriman';
+                                                        echo '<br>Dalam Pengiriman';
                                                     }else{
-                                                        echo 'Dikirim';
+                                                        echo '<br>Dikirim';
                                                     }
                                                 ?>
                                             </td>
-                                            <td>
-                                                <button type="button" class="btn btn-warning m-1" data-toggle="modal" data-target="#smallmodal">
+                                            <td style="text-align: center;">
+                                                <button type="button" class="btn btn-warning m-1" data-toggle="modal" data-target="#<?php echo $row['no_invoice']?>-no-resi">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
+                                                <div class="modal fade" id="<?php echo $row['no_invoice']?>-no-resi" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                    <div class="modal-content">
+                                                        <form action="" method="post">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="smallmodalLabel">Bukti Pengiriman <?php echo $row['nama_penerima']?></h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <label for="">Masukan No Resi Penerima</label>
+                                                                <input type="text" name="resi">
+                                                                <input type="text" hidden name="no_invoice" value="<?php echo $row['no_invoice']?>">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                                <button type="submit" name="submit-resi" class="btn btn-primary">Confirm</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                                 <?php 
                                                     if($row['no_resi']==0){
-                                                        echo 'Kosong';
+                                                        echo '<br>Kosong';
                                                     }else{
-                                                        echo $row['no_resi'];
+                                                        echo '<br>'.$row['no_resi'];
                                                     }
                                                 ?>
                                             </td>
