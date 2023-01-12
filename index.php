@@ -17,30 +17,30 @@
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-            <div class="single-hero-items set-bg" data-setbg="assets-frontend/img/hero-1.jpg">
+            <div class="single-hero-items set-bg" data-setbg="assets-frontend/img/hero.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
+                            <span>Tentang Kami</span>
+                            <h1>Aldri Jaya Steel</h1>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                Menyediakan produk berkualitas dengan melewati proses Quality Control demi memprioritaskan kepuasan Anda. 
                             </p>
-                            <a href="./login.php" class="primary-btn">Shop Now</a>
+                            <a href="./produk.php" class="primary-btn">Belanja Sekarang!</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single-hero-items set-bg" data-setbg="assets-frontend/img/hero-2.jpg">
+            <div class="single-hero-items set-bg" data-setbg="assets-frontend/img/heroo.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
+                            <span>Tentang Kami</span>
+                            <h1>Aldri Jaya Steel</h1>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                Pelayanan bintang lima, kecepatan kilat dan kualitas barang yang mumpuni, Anda puas, kami senang!
                             </p>
-                            <a href="./login.php" class="primary-btn">Shop Now</a>
+                            <a href="./produk.php" class="primary-btn">Belanja Sekarang!</a>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         ?>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="admin/upload/<?php echo $row['gambar']; ?>" alt="" />
+                                <img src="admin/upload/<?php echo $row['gambar']; ?>" alt=""/>
                                 <ul>
                                     <li class="w-icon active">
                                         <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>"><i class="icon_bag_alt"></i></a>
@@ -75,7 +75,7 @@
                                     <h5><?php echo $row['nama_produk']; ?></h5>
                                 </a>
                                 <div class="product-price">
-                                    <?php echo $row['harga']; ?>
+                                    Rp.<?php echo number_format($row['harga'],2,',','.'); ?>
                                 </div>
                             </div>
                         </div>
@@ -89,40 +89,6 @@
         </div>
     </section>
     <!-- Women Banner Section End -->
-
-    <!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="assets-frontend/img/logo-carousel/logo-1.png" alt="" />
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="assets-frontend/img/logo-carousel/logo-2.png" alt="" />
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="assets-frontend/img/logo-carousel/logo-3.png" alt="" />
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="assets-frontend/img/logo-carousel/logo-4.png" alt="" />
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="assets-frontend/img/logo-carousel/logo-5.png" alt="" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Partner Logo Section End -->
 
     <?php include 'layouts-frontend/footer.php'; ?>
     <?php include 'layouts-frontend/script.php'; ?>

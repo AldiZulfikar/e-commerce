@@ -43,7 +43,6 @@
                                 Keranjang Belanja &nbsp;
                                 <a href="./keranjang.php">
                                     <i class="icon_bag_alt"></i>
-                                    <span>3</span>
                                 </a>
                             </li>
                             <?php }?>

@@ -24,8 +24,9 @@ function tambah($data){
     $harga = $data["harga"];
     $created_at = date('Y-m-d');
     $jumlah = $data["jumlah"];
+    $berat = $data["berat"];
 
-    $query = "INSERT INTO model_produk VALUES ('', '$produk_id', '$model', '$harga', '$jumlah', '$created_at')";
+    $query = "INSERT INTO model_produk VALUES ('', '$produk_id', '$model', '$harga', '$jumlah', '$berat', '$created_at')";
 
     mysqli_query($conn, $query);
 

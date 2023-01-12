@@ -13,6 +13,20 @@
 
 <body>
     <?php include 'layouts-frontend/header.php'; ?>
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text product-more">
+                        <a href="./index.php"><i class="fa fa-home"></i> Home</a>
+                        <span>Semua Produk</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
     <!-- Related Products Section End -->
     <div class="related-products spad">
         <div class="container">
@@ -34,18 +48,18 @@
                                     <img src="admin/upload/<?php echo $row['gambar']; ?>" alt="" />
                                     <ul>
                                         <li class="w-icon active">
-                                            <a href="detail-produk.php"><i class="icon_bag_alt"></i></a>
+                                             <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>"><i class="icon_bag_alt"></i></a>
                                         </li>
-                                        <li class="quick-view"><a href="detail-produk.php">+ Lihat Produk</a></li>
+                                        <li class="quick-view"> <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>">+ Lihat Produk</a></li>
                                     </ul>
                                 </div>
                                 <div class="pi-text">
                                     <div class="catagory-name">Aldri Jaya Steel</div>
-                                    <a href="detail-produk.php">
+                                    <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>">
                                         <h5><?php echo $row['nama_produk']; ?></h5>
                                     </a>
                                     <div class="product-price">
-                                        <?php echo $row['harga']; ?>
+                                        Rp.<?php echo number_format($row['harga'],2,',','.'); ?>
                                     </div>
                                 </div>
                             </div>

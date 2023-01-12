@@ -53,7 +53,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./index.php"><i class="fa fa-home"></i> Home</a>
-                        <span>Detail</span>
+                        <span>Detail Produk</span>
                     </div>
                 </div>
             </div>

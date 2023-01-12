@@ -22,23 +22,22 @@
                 </div>
                 <div class="col-lg-3 offset-lg-1">
                     <div class="footer-widget">
-                        <h5>Information</h5>
+                        <h5>Informasi</h5>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Serivius</a></li>
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Syarat dan Ketentuan</a></li>
+                            <li><a href="#">Pelayanan</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="footer-widget">
-                        <h5>My Account</h5>
+                        <h5>Akun Saya</h5>
                         <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Shopping Cart</a></li>
-                            <li><a href="#">Shop</a></li>
+                            <li><a href="./riwayat-transaksi.php">Transaksi</a></li>
+                            <li><a href="./keranjang.php">Keranjang</a></li>
+                            <li><a href="./produk.php">Lihat Produk</a></li>
                         </ul>
                     </div>
                 </div>
