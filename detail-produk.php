@@ -82,13 +82,7 @@
                             </div>
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <?php 
-                                        foreach($gambar_utama as $gbru) :
-                                    ?>
-                                        <div class="pt active" data-imgbigurl="admin/upload/<?php echo $gbru['gambar']; ?>">
-                                            <img src="admin/upload/<?php echo $gbru['gambar']; ?>" alt="" />
-                                        </div>
-                                    <?php endforeach;?>
+                                    
                                     <?php 
                                         foreach($gambar as $gbr) :
                                     ?>
@@ -117,15 +111,20 @@
                                                     <span class="tab-item aktiv active" data-target=".pilih">Model</span>
                                                     <strong>Pilih Model:</strong>
                                                 </tr>
-                                                <tr>
-                                                    <?php 
-                                                        foreach($model as $mdl) :
-                                                    ?>  
-                                                        <input type="radio" value="<?php echo $mdl['model']; ?>" name="model" class="tab-item form-controll" data-target=".halo<?php echo $mdl['model']; ?>"><?php echo $mdl['model']; ?></input>
-                                                        <input type="text" hidden name="model_id" value="<?php echo $mdl['model_produk_id'];?>" >
-                                                        <input type="text" hidden name="produk_id" value="<?php echo $mdl['produk_id'];?>" >
-                                                        <input type="text" hidden name="username" value="<?php echo $username?>">
-                                                    <?php endforeach;?>
+                                                <tr>  
+                                                    <div class="radio">
+                                                            <?php 
+                                                                foreach($model as $mdl) :
+                                                            ?>  
+                                                            
+                                                            <input type="radio" id="<?php echo $mdl['model']; ?>" label="<?php echo $mdl['model']; ?>" value="<?php echo $mdl['model']; ?>" name="model" class="tab-item form-controll" data-target=".halo<?php echo $mdl['model']; ?>">
+                                                            
+                                                            
+                                                            <input type="text" hidden name="model_id" value="<?php echo $mdl['model_produk_id'];?>" >
+                                                            <input type="text" hidden name="produk_id" value="<?php echo $mdl['produk_id'];?>" >
+                                                            <input type="text" hidden name="username" value="<?php echo $username?>">
+                                                            <?php endforeach;?>
+                                                    </div>
                                                 </tr>
                                             </table>
                                             </div>
@@ -190,18 +189,18 @@
                                     <img src="admin/upload/<?php echo $row['gambar']; ?>" alt="" />
                                     <ul>
                                         <li class="w-icon active">
-                                            <a href="detail-produk.php"><i class="icon_bag_alt"></i></a>
+                                             <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>"><i class="icon_bag_alt"></i></a>
                                         </li>
-                                        <li class="quick-view"><a href="detail-produk.php">+ Lihat Produk</a></li>
+                                        <li class="quick-view"> <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>">+ Lihat Produk</a></li>
                                     </ul>
                                 </div>
                                 <div class="pi-text">
                                     <div class="catagory-name">Aldri Jaya Steel</div>
-                                    <a href="detail-produk.php">
+                                     <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>">
                                         <h5><?php echo $row['nama_produk']; ?></h5>
                                     </a>
                                     <div class="product-price">
-                                        <?php echo $row['harga']; ?>
+                                    Rp.<?php echo number_format($row['harga'],2,',','.'); ?>
                                     </div>
                                 </div>
                             </div>
