@@ -5,11 +5,14 @@
 		header("location:login.php");
 	}
     //ambil data
-    $transaksi = ambil_data("SELECT * FROM detail_transaksi 
-    INNER JOIN users on detail_transaksi.user_id=users.id
-    INNER JOIN produk on detail_transaksi.produk_id=produk.produk_id
-    INNER JOIN transaksi on detail_transaksi.no_invoice=transaksi.no_invoice
-    ORDER BY detail_transaksi_id DESC");
+    // $transaksi = ambil_data("SELECT * FROM detail_transaksi 
+    // INNER JOIN users on detail_transaksi.user_id=users.id
+    // INNER JOIN produk on detail_transaksi.produk_id=produk.produk_id
+    // INNER JOIN transaksi on detail_transaksi.no_invoice=transaksi.no_invoice
+    // ORDER BY detail_transaksi_id DESC");
+
+    $transaksi = ambil_data("SELECT * FROM transaksi 
+        ORDER BY transaksi_id DESC");
     
     if (isset($_POST['submit-pembayaran'])){
         if(edit_pembayaran($_POST) > 0){
@@ -97,6 +100,7 @@
                                             <th>Produk</th>
                                             <th>Total</th>
                                             <th>Pembeli</th>
+                                            <th>No.Invoice</th>
                                             <th>Alamat</th>
                                             <th>Tanggal</th>
                                             <th>Pembayaran</th>
@@ -114,7 +118,8 @@
                                             <td><?php echo $i?></td>
                                             <td><?php echo $row['nama_produk']?></td>
                                             <td><?php echo $row['total']?></td>
-                                            <td><?php echo $row['nama']?></td>
+                                            <td><?php echo $row['nama_penerima']?></td>
+                                            <td><?php echo $row['no_invoice']?></td>
                                             <td>
                                                 <?php 
                                                     echo 

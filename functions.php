@@ -63,7 +63,7 @@ function tambah_transaksi($data){
     $explode = explode('.',$gambar);
     $extensi  = $explode[count($explode)-1];
 
-    $kode_tf = 'TF#'.date('YdmHis');
+    $kode_tf = 'TF'.date('YdmHis');
     $kode = date('YdmHis');
 
     $upload = "upload/";
