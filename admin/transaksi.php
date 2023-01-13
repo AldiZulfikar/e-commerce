@@ -4,12 +4,6 @@
 	if(!isset($_SESSION['username'])){
 		header("location:login.php");
 	}
-    //ambil data
-    // $transaksi = ambil_data("SELECT * FROM detail_transaksi 
-    // INNER JOIN users on detail_transaksi.user_id=users.id
-    // INNER JOIN produk on detail_transaksi.produk_id=produk.produk_id
-    // INNER JOIN transaksi on detail_transaksi.no_invoice=transaksi.no_invoice
-    // ORDER BY detail_transaksi_id DESC");
 
     $transaksi = ambil_data("SELECT * FROM transaksi 
         ORDER BY transaksi_id DESC");
@@ -116,7 +110,39 @@
                                     ?>
                                         <tr>
                                             <td><?php echo $i?></td>
-                                            <td><?php echo $row['nama_produk']?></td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#<?php echo $row['no_invoice']?>-produk">
+                                                    Lihat daftar produk
+                                                </button>
+                                            <div class="modal fade" id="<?php echo $row['no_invoice']?>-produk" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                    <div class="modal-content">
+                                                        <form action="" method="post">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="smallmodalLabel">Daftar Produk yang dibeli <?php echo $row['nama_penerima']?></h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <?php 
+                                                                    $invoice = $row['no_invoice'];
+                                                                        $produk = ambil_data("SELECT * FROM detail_transaksi 
+                                                                        INNER JOIN produk on detail_transaksi.produk_id=produk.produk_id
+                                                                        WHERE no_invoice='$invoice'");
+                                                                        foreach($produk as $p) :
+                                                                    ?>
+                                                                    <p>- <?php echo $p['nama_produk']?></p>
+                                                                    <?php endforeach;?>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </td>
                                             <td><?php echo $row['total']?></td>
                                             <td><?php echo $row['nama_penerima']?></td>
                                             <td><?php echo $row['no_invoice']?></td>
@@ -152,8 +178,8 @@
                                                                 <input type="text" hidden name="no_invoice" value="<?php echo $row['no_invoice']?>">
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" name="submit-pembayaran" class="btn btn-primary">Confirm</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                                                                <button type="submit" name="submit-pembayaran" class="btn btn-primary">Submit</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -193,8 +219,8 @@
                                                                 <input type="text" hidden name="no_invoice" value="<?php echo $row['no_invoice']?>">
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" name="submit-pengiriman" class="btn btn-primary">Confirm</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                                                                <button type="submit" name="submit-pengiriman" class="btn btn-primary">Submit</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -230,8 +256,8 @@
                                                                 <input type="text" hidden name="no_invoice" value="<?php echo $row['no_invoice']?>">
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" name="submit-resi" class="btn btn-primary">Confirm</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                                                                <button type="submit" name="submit-resi" class="btn btn-primary">Submit</button>
                                                             </div>
                                                         </form>
                                                     </div>
