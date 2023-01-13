@@ -3,21 +3,14 @@
     require 'functions.php';
 
     $username = $_SESSION['username'];
-    
-    $id = $_GET['id'];
-
-    //ambil data
-    $produk = ambil_data("SELECT * FROM keranjang 
-    INNER JOIN gambar_produk on keranjang.produk_id=gambar_produk.produk_id 
-    INNER JOIN model_produk on keranjang.produk_id=model_produk.model_produk_id
-    INNER JOIN produk on keranjang.produk_id=produk.produk_id  
-    WHERE gambar_utama=1 AND keranjang_id='$id'");
-
-    $username = $_SESSION['username'];
     $user = ambil_data("SELECT * FROM users WHERE username = '$username'");
-
+    $id = $_GET['id'];
     if (isset($_POST['submit'])){
         if(tambah_transaksi($_POST) > 0){
+            foreach($id as $id)
+            {   
+                delete($id);
+            }
             echo "
                 <script>
                     alert('Transaksi akan diproses dalam waktu 3x24 jam, silahkan pantau detail transaksi Anda!');
@@ -45,7 +38,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./index.php"><i class="fa fa-home"></i> Home</a>
-                        <span>Shopping Cart</span>
+                        <span>Pembayran</span>
                     </div>
                 </div>
             </div>
@@ -65,30 +58,58 @@
                                     <thead>
                                         <tr>
                                             <th>Gambar</th>
-                                            <th class="p-name text-center">Nama Produk</th>\
+                                            <th class="p-name text-center">Nama Produk</th>
                                             <th>Model</th>
+                                            <th>Berat</th>
                                             <th>Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <form action="" method="post" enctype="multipart/form-data">
                                     <?php 
-                                        $i = 0;
-                                        foreach($produk as $row) :
-                                            $i++;
+                                        $biaya_pengiriman_total = 0;
+                                        $biaya_produk_total =0; 
+                                        foreach($id as $id)
+                                        {   
+                                            //ambil data
+                                            $produk = ambil_data("SELECT * FROM keranjang 
+                                            INNER JOIN gambar_produk on keranjang.produk_id=gambar_produk.produk_id 
+                                            INNER JOIN model_produk on keranjang.produk_id=model_produk.produk_id 
+                                            INNER JOIN produk on keranjang.produk_id=produk.produk_id 
+                                            WHERE gambar_utama=1 AND keranjang_id='$id'");
+
+                                            
+                                            foreach($produk as $row):
+                                                $biaya_produk = $row['harga'];
+                                                $biaya_produk_total = $biaya_produk_total + $biaya_produk;
+
+                                                $biaya_pengiriman = $row['berat'] * 10000;
+                                                $biaya_pengiriman_total = $biaya_pengiriman_total + $biaya_pengiriman;
+
+                                                
+                                                
                                     ?>
-                                        <tr>
-                                            <td class="cart-pic first-row">
-                                                <img src="admin/upload/<?php echo $row['gambar']?>" />
-                                            </td>
-                                            <td class="cart-title first-row text-center">
-                                                <h5><?php echo $row['nama_produk']?></h5>
-                                            </td>
-                                            <td class="cart-title first-row text-center">
-                                                <h5><?php echo $row['model']?></h5>
-                                            </td>
-                                            <td class="p-price first-row"><?php echo $row['harga']?></td>
-                                        </tr>
-                                    <?php endforeach;?>
+                                                <input type="text" hidden name="produk_id[]" value="<?php echo $row['produk_id']?>">
+                                                <tr>
+                                                    <td class="cart-pic first-row">
+                                                        <img src="admin/upload/<?php echo $row['gambar']?>" />
+                                                    </td>
+                                                    <td class="cart-title first-row text-center">
+                                                        <h5><?php echo $row['nama_produk']?></h5>
+                                                    </td>
+                                                    <td class="cart-title first-row text-center">
+                                                        <h5><?php echo $row['model']?></h5>
+                                                    </td>
+                                                    <td class="cart-title first-row text-center">
+                                                        <h5><?php echo $row['berat']?></h5>
+                                                    </td>
+                                                    <td class="p-price first-row"><?php echo $row['harga']?></td>
+                                                </tr>
+                                    <?php 
+                                            endforeach;
+                                
+                                         }
+                                         ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -98,13 +119,11 @@
                                 Informasi Pembeli:
                             </h4>
                             <div class="user-checkout">
-                                <form action="" method="post" enctype="multipart/form-data">
+                                
                                 <?php foreach($user as $row) : ?>
                                     <input type="text" hidden name="user_id" value="<?php echo $row['id']?>">
                                 <?php endforeach?>
-                                <?php foreach($produk as $row) : ?>
-                                    <input type="text" hidden name="produk_id" value="<?php echo $row['produk_id']?>">
-                                <?php endforeach?>
+                                    
                                     <div class="form-group">
                                         <label for="namaLengkap">Nama Penerima</label>
                                         <input type="text" name="nama" class="form-control" id="namaLengkap" aria-describedby="namaHelp" placeholder="Masukan Nama Penerima">
@@ -129,28 +148,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+               <div class="col-lg-4">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="proceed-checkout">
                                 <ul>
-                                    <?php 
-                                        $i = 0;
-                                        foreach($produk as $row) :
-                                            $i++;
-                                    ?>
-                                    <li class="subtotal mt-3">Biaya Produk <span><?php echo 'Rp'.number_format($row['harga'],2,',','.');?></span></li>
-                                    <li class="subtotal mt-3">Biaya Pengiriman 
+                                    <li class="subtotal mt-3">Total Biaya Produk <span><?php echo 'Rp'.number_format($biaya_produk_total,2,',','.');?></span></li>
+                                    <li class="subtotal mt-3">Total Biaya Pengiriman 
                                         <span>
                                         <?php 
-                                        $bp =$row['berat'] * 10000;
-                                        echo 'Rp'.number_format($bp,2,',','.');
+                                        echo 'Rp'.number_format($biaya_pengiriman_total,2,',','.');
                                         ?>
                                         </span></li>
                                     <li class="subtotal mt-3">Total Biaya 
                                         <span>
                                         <?php 
-                                            $t = $bp + $row['harga'];
+                                            $t = $biaya_pengiriman_total + $biaya_produk_total;
                                             echo 'Rp'.number_format($t,2,',','.');
                                         ?>
                                         <input type="text" hidden name="total" value="<?php echo $t?>">
@@ -158,7 +171,6 @@
                                     </li>
                                     <li class="subtotal mt-3">Bank Transfer <span>Mandiri</span></li>
                                     <li class="subtotal mt-3">No. Rekening <span>2208 1996 1403</span></li>
-                                    <?php endforeach;?>
                                 </ul>
                                 <button type="submit" name="submit" class="proceed-btn w-100">Saya sudah Membayar</button>
                                 </form>

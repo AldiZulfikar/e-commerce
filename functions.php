@@ -71,10 +71,14 @@ function tambah_transaksi($data){
     $namaFile = 'Bukti_tf_'.$kode.'.'.$extensi;
 
     $terupload = move_uploaded_file($namaSementara, $upload.$namaFile);
-    $query2 = "INSERT INTO detail_transaksi VALUES ('', '$user_id', '$produk_id', '$kode_tf')";
-    mysqli_query($conn, $query2);
+    
+    foreach($produk_id as $id)
+    {   
+        $query2 = "INSERT INTO detail_transaksi VALUES ('', '$user_id', '$id', '$kode_tf')";
+        mysqli_query($conn, $query2);
+    }
 
-    $query = "INSERT INTO transaksi VALUES ('', '$kode_tf', '$nama_penerima', '$email_penerima', '$total', '$alamat_penerima', '$notel', '$namaFile', '0', '0', '0', '$created_at', '$created_at')";
+    $query = "INSERT INTO transaksi VALUES ('', '$kode_tf', '$nama_penerima', '$email_penerima', '$total', '$alamat_penerima', '$notel', '$namaFile', '0', '0', '0', '$created_at')";
     mysqli_query($conn, $query);
     
 
