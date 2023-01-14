@@ -54,7 +54,7 @@
                                     </ul>
                                 </div>
                                 <div class="pi-text">
-                                    <div class="catagory-name">Aldri Jaya Steel</div>
+                                    <div class="catagory-name">Aldrin Jaya Steel</div>
                                     <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>">
                                         <h5><?php echo $row['nama_produk']; ?></h5>
                                     </a>

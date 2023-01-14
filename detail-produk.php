@@ -1,7 +1,11 @@
 <?php 
 	session_start();
     require 'functions.php';
-    
+
+    if(!isset($_SESSION['username'])){
+		header("location:login.php");
+	}
+
     $id = $_GET['id'];
     //ambil data
     $produk = ambil_data("SELECT * FROM produk 
@@ -12,6 +16,7 @@
     LIMIT 4");
 
     $username = $_SESSION['username'];
+    
 
     $detail = ambil_data("SELECT * FROM produk WHERE produk_id='$id' ");
 
@@ -96,7 +101,7 @@
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
-                                    <span>Aldri Jaya Steel</span>
+                                    <span>Aldrin Jaya Steel</span>
                                     <h3><?php echo $dtl['nama_produk']; ?></h3>
                                 </div>
                                 <form action="" method="post">
@@ -195,7 +200,7 @@
                                     </ul>
                                 </div>
                                 <div class="pi-text">
-                                    <div class="catagory-name">Aldri Jaya Steel</div>
+                                    <div class="catagory-name">Aldrin Jaya Steel</div>
                                      <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>">
                                         <h5><?php echo $row['nama_produk']; ?></h5>
                                     </a>

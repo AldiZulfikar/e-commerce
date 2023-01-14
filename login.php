@@ -39,14 +39,9 @@
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
             <div class="login-content">
-                <div class="login-logo">
-                    <a href="./index.php">
-                        <img class="align-content" src="images/logo.png" alt="">
-                    </a>
-                </div>
                 <div class="login-form">
                 <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Masuk Akun <br>Selamat Datang!</h1>
                         <?php 
                             if(isset($_GET['pesan'])){
                                 if($_GET['pesan'] == "gagal"){
@@ -63,7 +58,7 @@
                         <div class="form-group">
                             <input type="text" name="username" class="form-control form-control-user"
                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                placeholder="Masukan username..">
+                                placeholder="Masukan username">
                         </div>
                         <div class="form-group">
                             <input type="password" name="password" class="form-control form-control-user"

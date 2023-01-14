@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-lg-5">
                             <span>Tentang Kami</span>
-                            <h1>Aldri Jaya Steel</h1>
+                            <h1>Aldrin Jaya Steel</h1>
                             <p>
                                 Menyediakan produk berkualitas dengan melewati proses Quality Control demi memprioritaskan kepuasan Anda. 
                             </p>
@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-lg-5">
                             <span>Tentang Kami</span>
-                            <h1>Aldri Jaya Steel</h1>
+                            <h1>Aldrin Jaya Steel</h1>
                             <p>
                                 Pelayanan bintang lima, kecepatan kilat dan kualitas barang yang mumpuni, Anda puas, kami senang!
                             </p>

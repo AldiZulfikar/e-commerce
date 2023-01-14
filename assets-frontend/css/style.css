@@ -419,7 +419,7 @@ ol {
 }
 
 .inner-header .logo {
-	padding: 12px 0;
+	margin-top: -60px;
 }
 
 .inner-header .logo a {
@@ -1552,11 +1552,14 @@ ol {
 }
 
 .footer-left .footer-logo {
-	margin-bottom: 24px;
+	margin-bottom: 0;
 }
 
 .footer-left .footer-logo img {
-	height: 30px !important;
+	height: 200px !important;
+	padding: 0;
+	margin-top: -65px;
+	margin-bottom: -35px;
 }
 
 .footer-left .footer-logo a {

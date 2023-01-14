@@ -78,7 +78,7 @@ function tambah_transaksi($data){
         mysqli_query($conn, $query2);
     }
 
-    $query = "INSERT INTO transaksi VALUES ('', '$kode_tf', '$nama_penerima', '$email_penerima', '$total', '$alamat_penerima', '$notel', '$namaFile', '0', '0', '0', '$created_at')";
+    $query = "INSERT INTO transaksi VALUES ('', '$user_id', '$kode_tf', '$nama_penerima', '$email_penerima', '$total', '$alamat_penerima', '$notel', '$namaFile', '0', '0', '0', '$created_at')";
     mysqli_query($conn, $query);
     
 

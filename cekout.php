@@ -2,9 +2,16 @@
 	session_start();
     require 'functions.php';
 
+    if(!isset($_SESSION['username'])){
+        header("location:login.php");
+	}
+    
+    if(!isset($_GET['id'])){
+        header("location:index.php");
+    }
+    $id = $_GET['id'];
     $username = $_SESSION['username'];
     $user = ambil_data("SELECT * FROM users WHERE username = '$username'");
-    $id = $_GET['id'];
     if (isset($_POST['submit'])){
         if(tambah_transaksi($_POST) > 0){
             foreach($id as $id)

@@ -38,12 +38,10 @@
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
             <div class="login-content">
-                <div class="login-logo">
-                    <a href="">
-                        <img class="align-content" src="images/logo.png" alt="">
-                    </a>
-                </div>
                 <div class="login-form">
+                    <div class="login-logo">
+                        <h1>Daftar Akun</h1> 
+                    </div>
                     <?php 
                         if(isset($_GET['pesan'])){
                             if($_GET['pesan'] == "konfirmasi-gagal"){

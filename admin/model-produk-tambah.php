@@ -61,19 +61,19 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="description" class="form-control-label">Model</label>
-                                            <input name="model" class="form-control">
+                                            <input name="model" required class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="description" class="form-control-label">Harga</label>
-                                            <input name="harga" type="number" class="form-control">
+                                            <input name="harga" required type="number" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="description" class="form-control-label">Jumlah</label>
-                                            <input name="jumlah" type="number" class="form-control">
+                                            <input name="jumlah" required type="number" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="description" class="form-control-label">Berat (kg)</label>
-                                            <input name="berat" type="number" class="form-control">
+                                            <input name="berat" required type="number" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <button class="btn btn-primary btn-block" type="submit" name="submit" >Tambah Model Produk</button>

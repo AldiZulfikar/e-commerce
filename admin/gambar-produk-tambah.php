@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="description" class="form-control-label">Gambar</label>
-                                            <input type="file" accept="image/*" name="gambar" class="form-control">
+                                            <input type="file" required accept="image/*" name="gambar" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="gambar_utama" class="form-control-label">Jadikan Gambar Utama</label>

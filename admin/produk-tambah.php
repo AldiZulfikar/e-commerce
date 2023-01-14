@@ -54,7 +54,7 @@ $user = ambil_data("SELECT * FROM users WHERE username = '$username'");
                             <?php endforeach?>
                                 <div class="form-group">
                                     <label for="name" class="form-control-label">Nama Produk</label>
-                                    <input type="text" name="nama" class="form-control">
+                                    <input type="text" required name="nama" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class="form-control-label">Deskripsi Produk</label>

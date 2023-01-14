@@ -3,11 +3,14 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="index.php"><i class
-                            ="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    <li class="">
+                        <a href="index.php"><i class="menu-icon fa fa-list"></i>Dashboard </a>
                     </li>
-                    <li class="active">
+                    <li class="">
+                        <a href="../index.php"><i class
+                            ="menu-icon fa fa-laptop"></i>Lihat Website </a>
+                    </li>
+                    <li class="">
                         <a href="user.php"><i class
                             ="menu-icon fa fa-book"></i>Data Pelanggan </a>
                     </li>

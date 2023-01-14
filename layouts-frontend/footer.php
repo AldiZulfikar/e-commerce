@@ -5,12 +5,12 @@
                 <div class="col-lg-5">
                     <div class="footer-left">
                         <div class="footer-logo">
-                            <a href="#"><img src="assets-frontend/img/logo_website_shayna_white.png" alt="" /></a>
+                            <a href="#"><img src="assets-frontend/img/logo-footer.png" alt="" /></a>
                         </div>
                         <ul>
                             <li>Address: Setra Duta, Bandung</li>
                             <li>Phone: +628 22081996</li>
-                            <li>Email: aldrijayasteel@gmail.com</li>
+                            <li>Email: aldrinjayasteel@gmail.com</li>
                         </ul>
                         <div class="footer-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -38,6 +38,7 @@
                             <li><a href="./riwayat-transaksi.php">Transaksi</a></li>
                             <li><a href="./keranjang.php">Keranjang</a></li>
                             <li><a href="./produk.php">Lihat Produk</a></li>
+                            <li><a href="./logout.php">Keluar</a></li>
                         </ul>
                     </div>
                 </div>

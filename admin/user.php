@@ -5,7 +5,7 @@
 		header("location:login.php");
 	}
     //ambil data
-    $user = ambil_data("SELECT * FROM users WHERE level='admin' ORDER BY id DESC");
+    $user = ambil_data("SELECT * FROM users WHERE level='user' ORDER BY id DESC");
     
 ?>
 
@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Tabel Data Pelanggan</strong>
+                                <strong class="card-title">List Data Pelanggan</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -38,7 +38,7 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Jenis kelamin</th>
-                                            <th>No.Telepon</th>
+                                            <!-- <th>No.Telepon</th> -->
                                             <th>Email</th>
                                             <th>Bergabung Sejak</th>
                                         </tr>
@@ -62,7 +62,7 @@
                                                 ?>
                                                 
                                             </td>
-                                            <td><?php echo $row['notel']?></td>
+                                            <!-- <td><?php echo $row['notel']?></td> -->
                                             <td><?php echo $row['email']?></td>
                                             <td><?php echo $row['created_at']?></td>
                                         </tr>
