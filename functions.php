@@ -50,6 +50,7 @@ function tambah_transaksi($data){
     global $conn;
 
     $produk_id = $data["produk_id"];
+    $model_id = $data["model_id"];
     $user_id = $data["user_id"];
     $total = $data["total"];
     $nama_penerima = htmlspecialchars($data["nama"]);
@@ -74,8 +75,11 @@ function tambah_transaksi($data){
     
     foreach($produk_id as $id)
     {   
-        $query2 = "INSERT INTO detail_transaksi VALUES ('', '$user_id', '$id', '$kode_tf')";
-        mysqli_query($conn, $query2);
+        foreach($model_id as $model_id)
+        {
+            $query2 = "INSERT INTO detail_transaksi VALUES ('', '$user_id', '$id', '$model_id', '$kode_tf')";
+            mysqli_query($conn, $query2);
+        }
     }
 
     $query = "INSERT INTO transaksi VALUES ('', '$user_id', '$kode_tf', '$nama_penerima', '$email_penerima', '$total', '$alamat_penerima', '$notel', '$namaFile', '0', '0', '0', '$created_at')";

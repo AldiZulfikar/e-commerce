@@ -33,18 +33,64 @@
                             <li class="cart-icon">
                             <?php 
                                 if(!isset($_SESSION['username'])){
-                                    echo "<a href='./login.php'>Masuk <i class='icon_bag_alt'></i></a>";
+                                    echo "<a href='./login.php'>Masuk <i class='fa fa-sign-in' aria-hidden='true'></i></a>";
                             ?>   
                             </li>
                             <?php
                                 }else{ 
+                                    $username = $_SESSION['username'];
+                                    $user = ambil_data("SELECT * FROM users WHERE username = '$username'");
                             ?> 
                             <li class="cart-icon">
-                                Keranjang Belanja &nbsp;
+                                <?php 
+                                    foreach($user as $row):
+                                        echo $row['nama'];
+                                    endforeach;
+                                ?>
+                                <a href="#">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                </a>
+                                <div class="cart-hover">
+                                    <div class="select-items">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <a href="./keranjang.php">
+                                                                <h6><i class="fa fa-shopping-cart" aria-hidden="true"></i> Keranjang</h6>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <a href="./riwayat-transaksi.php">
+                                                                <h6><i class="fa fa-truck" aria-hidden="true"></i> Pesanan Saya</h6>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <a href="./logout.php">
+                                                                <h6><i class="fa fa-sign-out" aria-hidden="true"></i> Keluar</h6>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- <li class="cart-icon">
                                 <a href="./keranjang.php">
                                     <i class="icon_bag_alt"></i>
                                 </a>
-                            </li>
+                            </li> -->
                             <?php }?>
                         </ul>
                     </div>

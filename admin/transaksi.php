@@ -130,10 +130,11 @@
                                                                     $invoice = $row['no_invoice'];
                                                                         $produk = ambil_data("SELECT * FROM detail_transaksi 
                                                                         INNER JOIN produk on detail_transaksi.produk_id=produk.produk_id
+                                                                        INNER JOIN model_produk on detail_transaksi.model_id=model_produk.model_produk_id
                                                                         WHERE no_invoice='$invoice'");
                                                                         foreach($produk as $p) :
                                                                     ?>
-                                                                    <p>- <?php echo $p['nama_produk']?></p>
+                                                                    <p>- <?php echo $p['nama_produk'].' ('.$p['model'].')';?></p>
                                                                     <?php endforeach;?>
                                                             </div>
                                                             <div class="modal-footer">
@@ -155,7 +156,7 @@
                                             </td>
                                             <td><?php echo $row['created_at']?></td>
                                             <td style="text-align: center;">
-                                            <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#<?php echo $row['no_invoice']?>-pembayaran">
+                                            <button type="button" class="btn <?php if($row['status_pembayaran']==0){echo'btn-secondary';}else if($row['status_pembayaran']==1){echo'btn-primary';}else{echo'btn-warning';}?> mb-1" data-toggle="modal" data-target="#<?php echo $row['no_invoice']?>-pembayaran">
                                                 <i class="fa fa-picture-o"></i>
                                             </button>
                                             <div class="modal fade" id="<?php echo $row['no_invoice']?>-pembayaran" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
@@ -197,7 +198,14 @@
                                                 ?>
                                             </td>
                                             <td style="text-align: center;">
-                                            <button type="button" class="btn btn-secondary m-1" data-toggle="modal" data-target="#<?php echo $row['no_invoice']?>-pengiriman">
+                                            <button type="button" 
+                                            class="btn <?php if($row['status_pengiriman']==0 && $row['status_pembayaran']==0 || $row['status_pengiriman']==0 && $row['status_pembayaran']==2)
+                                                                {echo'disabled btn-secondary';
+                                                                }else if($row['status_pengiriman']==0 && $row['status_pembayaran']==1){echo'btn-secondary';
+                                                                }else if($row['status_pengiriman']==1){echo'btn-info';
+                                                                }else{echo'btn-primary';}?> m-1" 
+                                            data-toggle="modal" 
+                                            data-target="#<?php echo $row['no_invoice']?>-pengiriman">
                                                 <i class="fa fa-picture-o"></i>
                                             </button>
                                             <div class="modal fade" id="<?php echo $row['no_invoice']?>-pengiriman" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
@@ -212,11 +220,23 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <label for="">Ubah Status Pengiriman</label>
-                                                                <select name="status" class="form-control">
-                                                                    <option value="0">Dikemas</option>
-                                                                    <option value="1">Dalam Pengiriman</option>
-                                                                    <option value="2">Dikirim</option>
-                                                                </select>
+                                                                <?php
+                                                                    if($row['status_pengiriman']==0 && $row['status_pembayaran']==0 || $row['status_pengiriman']==0 && $row['status_pembayaran']==2){
+                                                                        echo'
+                                                                        <select name="status" class="form-control" disabled>
+                                                                            <option value="0">Dikemas</option>
+                                                                            <option value="1">Dalam Pengiriman</option>
+                                                                            <option value="2">Dikirim</option>
+                                                                        </select>';
+                                                                    }else if($row['status_pengiriman']==0 && $row['status_pembayaran']==1){
+                                                                        echo'<select name="status" class="form-control">
+                                                                            <option value="0">Dikemas</option>
+                                                                            <option value="1">Dalam Pengiriman</option>
+                                                                            <option value="2">Dikirim</option>
+                                                                        </select>';
+                                                                    }
+                                                                ?>
+                                                                
                                                                 <input type="text" hidden name="no_invoice" value="<?php echo $row['no_invoice']?>">
                                                             </div>
                                                             <div class="modal-footer">
@@ -238,7 +258,14 @@
                                                 ?>
                                             </td>
                                             <td style="text-align: center;">
-                                                <button type="button" class="btn btn-warning m-1" data-toggle="modal" data-target="#<?php echo $row['no_invoice']?>-no-resi">
+                                                <button type="button" 
+                                                class="btn <?php if($row['no_resi']==0 && $row['status_pembayaran']==0 || $row['no_resi']==0 && $row['status_pembayaran']==2)
+                                                                {echo'disabled btn-secondary';
+                                                                }else if($row['no_resi']==0 && $row['status_pembayaran']==1){echo'btn-secondary';
+                                                                }else if($row['no_resi']!=0){echo'btn-primary';
+                                                                }?> m-1" 
+                                                data-toggle="modal" 
+                                                data-target="#<?php echo $row['no_invoice']?>-no-resi">
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
                                                 <div class="modal fade" id="<?php echo $row['no_invoice']?>-no-resi" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
@@ -253,7 +280,14 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <label for="">Masukan No Resi Penerima</label>
-                                                                <input type="text" name="resi">
+                                                                <?php
+                                                                    if($row['no_resi']==0 && $row['status_pembayaran']==0 || $row['no_resi']==0 && $row['status_pembayaran']==2){
+                                                                        echo'<input type="text" name="resi" required disabled>';
+                                                                    }else if($row['no_resi']==0 && $row['status_pembayaran']==1){
+                                                                        echo'<input type="text" name="resi" required>';
+                                                                    }
+                                                                ?>
+                                                                
                                                                 <input type="text" hidden name="no_invoice" value="<?php echo $row['no_invoice']?>">
                                                             </div>
                                                             <div class="modal-footer">

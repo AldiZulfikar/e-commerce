@@ -24,10 +24,9 @@
                     <div class="footer-widget">
                         <h5>Informasi</h5>
                         <ul>
-                            <li><a href="#">Tentang Kami</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Syarat dan Ketentuan</a></li>
-                            <li><a href="#">Pelayanan</a></li>
+                            <li><a href="./tentang-kami.php">Tentang Kami</a></li>
+                            <li><a href="./pilih-kami.php">Mengapa Pilih Kami?</a></li>
+                            <li><a href="./snk.php">Syarat dan Ketentuan</a></li>
                         </ul>
                     </div>
                 </div>
@@ -38,7 +37,6 @@
                             <li><a href="./riwayat-transaksi.php">Transaksi</a></li>
                             <li><a href="./keranjang.php">Keranjang</a></li>
                             <li><a href="./produk.php">Lihat Produk</a></li>
-                            <li><a href="./logout.php">Keluar</a></li>
                         </ul>
                     </div>
                 </div>

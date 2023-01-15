@@ -97,6 +97,7 @@
                                                 
                                     ?>
                                                 <input type="text" hidden name="produk_id[]" value="<?php echo $row['produk_id']?>">
+                                                <input type="text" hidden name="model_id[]" value="<?php echo $row['model_id']?>">
                                                 <tr>
                                                     <td class="cart-pic first-row">
                                                         <img src="admin/upload/<?php echo $row['gambar']?>" />

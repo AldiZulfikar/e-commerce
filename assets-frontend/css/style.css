@@ -530,7 +530,8 @@ ol {
 .inner-header .nav-right li.cart-icon:hover .cart-hover {
 	opacity: 1;
 	visibility: visible;
-	top: 60px;
+	top: 25px;
+	width: 15rem;
 }
 
 .inner-header .nav-right li.cart-icon a {
@@ -577,7 +578,7 @@ ol {
 }
 
 .inner-header .nav-right li.cart-icon .cart-hover .select-items table tr td {
-	padding-bottom: 20px;
+	padding-bottom: 5px;
 }
 
 .inner-header

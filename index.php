@@ -17,28 +17,42 @@
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-            <div class="single-hero-items set-bg" data-setbg="assets-frontend/img/hero.jpg">
+            <div class="single-hero-items set-bg" data-setbg="assets-frontend/img/hero1.png">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Tentang Kami</span>
-                            <h1>Aldrin Jaya Steel</h1>
+                            <span>Aldrin Jaya Steel</span>
+                            <h1>Harga yang bersaing</h1>
                             <p>
-                                Menyediakan produk berkualitas dengan melewati proses Quality Control demi memprioritaskan kepuasan Anda. 
+                            Dengan kualitas yang diberikan, kami memberikan harga yang terjangkau.
                             </p>
                             <a href="./produk.php" class="primary-btn">Belanja Sekarang!</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single-hero-items set-bg" data-setbg="assets-frontend/img/heroo.jpg">
+            <div class="single-hero-items set-bg" data-setbg="assets-frontend/img/hero2.png">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Tentang Kami</span>
-                            <h1>Aldrin Jaya Steel</h1>
+                            <span>Aldrin Jaya Steel</span>
+                            <h1>Barang dari metal berkualitas</h1>
                             <p>
-                                Pelayanan bintang lima, kecepatan kilat dan kualitas barang yang mumpuni, Anda puas, kami senang!
+                                Kami menyediakan barang sesuai kebutuhan anda dengan jaminan kualitas terbaik.
+                            </p>
+                            <a href="./produk.php" class="primary-btn">Belanja Sekarang!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-hero-items set-bg" data-setbg="assets-frontend/img/hero3.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Aldrin Jaya Steel</span>
+                            <h1>Pelayanan terbaik</h1>
+                            <p>
+                                Kami memberikan kenyamanan dalam pelayanan kami, sehingga pembeli merasa puas.
                             </p>
                             <a href="./produk.php" class="primary-btn">Belanja Sekarang!</a>
                         </div>
@@ -64,13 +78,12 @@
                                 <img src="admin/upload/<?php echo $row['gambar']; ?>" alt=""/>
                                 <ul>
                                     <li class="w-icon active">
-                                        <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>"><i class="icon_bag_alt"></i></a>
+                                        <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Detail produk</a>
                                     </li>
-                                    <li class="quick-view"><a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>">+ Lihat Produk</a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Aldri Jaya Steel</div>
+                                <div class="catagory-name">Aldrin Jaya Steel</div>
                                 <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>">
                                     <h5><?php echo $row['nama_produk']; ?></h5>
                                 </a>

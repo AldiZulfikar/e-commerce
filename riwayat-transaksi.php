@@ -45,6 +45,9 @@
                                             <th>No. Invoice</th>
                                             <th>Detail Produk</th>
                                             <th>Total Harga</th>
+                                            <th>Status Pembayaran</th>
+                                            <th>Status Pengiriman</th>
+                                            <th>No.Resi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,23 +62,59 @@
                                                 </td>
                                                 <td class="cart-pic first-row text-left">
                                                         <?php 
-                                                            $no=$row['no_invoice'];
-                                                            $pr = ambil_data("SELECT * FROM detail_transaksi 
-                                                            INNER JOIN produk on detail_transaksi.produk_id=produk.produk_id
-                                                            INNER JOIN gambar_produk on detail_transaksi.produk_id=gambar_produk.produk_id
-                                                            INNER JOIN model_produk on detail_transaksi.produk_id=model_produk.produk_id
-                                                            WHERE gambar_utama=1 AND no_invoice='$no' ORDER BY detail_transaksi_id ASC");
+                                                            $no=$row['no_invoice']; 
+                                                                $pr = ambil_data("SELECT * FROM detail_transaksi 
+                                                                INNER JOIN produk on detail_transaksi.produk_id=produk.produk_id
+                                                                INNER JOIN gambar_produk on detail_transaksi.produk_id=gambar_produk.produk_id
+                                                                INNER JOIN model_produk on detail_transaksi.model_id=model_produk.model_produk_id
+                                                                WHERE gambar_utama=1 AND no_invoice='$no' ORDER BY detail_transaksi_id ASC");
+  
 
                                                             foreach($pr as $pr):
                                                         ?>
-                                                            <h5><?php echo $pr['nama_produk']?></h5>    
-                                                            <span> Rp.<?php echo number_format($pr['harga'],2,',','.'); ?></span>
-                                                            <img src="admin/upload/<?php echo $pr['gambar']?>" />
-                                                        
+                                                            <div class="card" style="width: 10rem;">
+                                                                <img style="height: 10rem;" src="admin/upload/<?php echo $pr['gambar']?>" alt="Card image cap">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title"><?php echo $pr['nama_produk'];?></h5>
+                                                                    <span>Model: <?php echo $pr['model'];?></span>
+                                                                    <p class="card-text">Rp.<?php echo number_format($pr['harga'],2,',','.'); ?></p>
+                                                                </div>
+                                                            </div>                                                      
                                                         <?php endforeach;?>
                                                 </td>
                                                 <td class="cart-title first-row text-center">
                                                 Rp.<?php echo number_format($row['total'],2,',','.'); ?>
+                                                </td>
+                                                <td class="cart-title first-row text-center">
+                                                    <?php 
+                                                    if($row['status_pembayaran']==1){
+                                                        echo 'Diterima';
+                                                    }else if($row['status_pembayaran']==0){
+                                                        echo 'Diproses';
+                                                    }else{
+                                                        echo 'Tidak Valid! Silahkan Hubungi Customer Service!';
+                                                    }
+                                                     ?>
+                                                </td>
+                                                <td class="cart-title first-row text-center">
+                                                    <?php 
+                                                    if($row['status_pengiriman']==1){
+                                                        echo 'Dalam Pengiriman';
+                                                    }else if($row['status_pengiriman']==0){
+                                                        echo 'Dikemas';
+                                                    }else{
+                                                        echo 'Dikirim';
+                                                    }
+                                                     ?>
+                                                </td>
+                                                <td class="cart-title first-row text-center">
+                                                    <?php 
+                                                    if($row['no_resi']==0){
+                                                        echo 'Diproses';
+                                                    }else{
+                                                        echo $row['no_resi'];
+                                                    }
+                                                     ?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>

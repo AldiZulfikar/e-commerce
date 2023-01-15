@@ -48,9 +48,8 @@
                                     <img src="admin/upload/<?php echo $row['gambar']; ?>" alt="" />
                                     <ul>
                                         <li class="w-icon active">
-                                             <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>"><i class="icon_bag_alt"></i></a>
+                                        <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Detail produk</a>
                                         </li>
-                                        <li class="quick-view"> <a href="detail-produk.php?id=<?php echo $row['produk_id']; ?>">+ Lihat Produk</a></li>
                                     </ul>
                                 </div>
                                 <div class="pi-text">
