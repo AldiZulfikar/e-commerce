@@ -9,7 +9,7 @@
     $nama = $_GET['nama-produk'];
     //ambil data
     $produk = ambil_data("SELECT * FROM model_produk WHERE produk_id='$id'");
-    
+    $page = "produk";
 ?>
 
 
@@ -32,7 +32,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Tabel Model Produk - "<?php echo $nama?>"</strong>
+                                <strong class="card-title">List Detail Produk - "<?php echo $nama?>"</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -56,7 +56,7 @@
                                             <td><?php echo $row['harga']?></td>
                                             <td>
                                                 <form action="model-produk-delete.php?id=<?php echo $row['model_produk_id']?>" method="post" class="d-inline">
-                                                    <button class="btn btn-danger btn-sm">
+                                                    <button data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return confirm('Anda yakin ingih menghapus?')" class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -65,6 +65,9 @@
                                         <?php endforeach;?>
                                     </tbody>
                                 </table>
+                                <div class="text-right">
+                                    <a href="./produk.php" class="btn btn-primary m-3">Kembali</a>
+                                </div>
                             </div>
                         </div>
                     </div>

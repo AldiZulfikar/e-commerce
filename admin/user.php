@@ -6,6 +6,8 @@
 	}
     //ambil data
     $user = ambil_data("SELECT * FROM users WHERE level='user' ORDER BY id DESC");
+
+    $page="pelanggan"
     
 ?>
 

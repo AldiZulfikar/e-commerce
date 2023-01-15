@@ -6,7 +6,7 @@
 	}
     //ambil data
     $produk = ambil_data("SELECT * FROM gambar_produk INNER JOIN produk on gambar_produk.produk_id=produk.produk_id ORDER BY gambar_produk_id DESC");
-    
+    $page = "gambar";
 ?>
 
 
@@ -33,6 +33,9 @@
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                <div class="text-right">
+                                        <a href="gambar-produk-tambah.php" class="btn btn-primary m-3"><i class="menu-icon fa fa-plus"></i> Gambar Produk</a>
+                                    </div>
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -63,7 +66,7 @@
                                             </td>
                                             <td>
                                                 <form action="gambar-produk-delete.php?id=<?php echo $row['gambar_produk_id']?>" method="post" class="d-inline">
-                                                    <button class="btn btn-danger btn-sm">
+                                                    <button data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return confirm('Anda yakin ingih menghapus?')" class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>

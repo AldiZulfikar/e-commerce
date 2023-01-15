@@ -4,6 +4,7 @@
 	if(!isset($_SESSION['username'])){
 		header("location:login.php");
 	}
+    $page = "gambar";
 
     //ambil data
     $produk = ambil_data("SELECT * FROM produk ");
@@ -25,7 +26,6 @@
         }
     }
 ?>
-
 
 <?php include '../layouts/link.php'; ?>
 <body>
@@ -51,29 +51,42 @@
                                 <div class="card-body card-block">
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="name" class="form-control-label">Nama Produk</label>
+                                            <div class="custom-file">
+                                                <input type="file" required accept="image/*" name="gambar" class="custom-file-input" id="validatedCustomFile" required>
+                                                <label class="custom-file-label" for="validatedCustomFile">Pilih gambar</label>
+                                                <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="form-control-label">Pilih Jenis Produk</label>
                                             <select name="produk_id" class="form-control">
                                                 <?php foreach($produk as $pr) : ?>
                                                     <option value="<?php echo $pr['produk_id']?>"><?php echo $pr['nama_produk']?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="description" class="form-control-label">Gambar</label>
-                                            <input type="file" required accept="image/*" name="gambar" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="gambar_utama" class="form-control-label">Jadikan Gambar Utama</label>
-                                            <br>
-                                            <label>
-                                                <input onclick="my()" type="radio" name="gambar_utama" value="1" class="form-control"> Utama
-                                            </label> &nbsp;
-                                            <label>
-                                                <input type="radio" name="gambar_utama" value="0" class="form-control"> Tidak
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-primary btn-block" type="submit" name="submit" >Tambah Gambar Produk</button>
+                                        <fieldset class="form-group">
+                                            <div class="row">
+                                                <legend class="col-form-label col-sm-2 pt-0">Keterangan</legend>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-check">
+                                                            <input onclick="my()" class="form-check-input" type="radio" name="gambar_utama" value="1" id="gridRadios1">
+                                                            <label class="form-check-label" for="gridRadios1">
+                                                                Jadikan gambar utama
+                                                            </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="gambar_utama" value="0" id="gridRadios2">
+                                                            <label class="form-check-label" for="gridRadios2">
+                                                                Jangan jadikan gambar utama
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </fieldset>
+                                        <div class="text-right">
+                                            <a href="./gambar-produk.php" class="btn btn-secondary">Batal</a>
+                                            <button class="btn btn-primary" type="submit" name="submit" >Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -88,7 +101,7 @@
     <!-- /#right-panel -->
     <script>
         function my(){
-            alert('Bila anda menjadikan ini sebagai gambar utama, maka gambar utama sebelumnya akan tergantikan!');
+            alert('Gambar utama adalah gambar yang akan dilihat pertama kali oleh pelanggang. Bila anda menjadikan ini sebagai gambar utama, maka gambar utama sebelumnya akan tergantikan!');
         }
     </script>
     <?php include '../layouts/script.php'; ?> 

@@ -25,8 +25,21 @@
 
     $model = ambil_data("SELECT * FROM model_produk WHERE produk_id='$id'");
 
+    $total_prod = ambil_data("SELECT COUNT(produk_id) as total_prod FROM model_produk WHERE produk_id='$id'");
     $max = ambil_data("SELECT max(harga) as max FROM model_produk WHERE produk_id='$id'");
     $min = ambil_data("SELECT min(harga) as min FROM model_produk WHERE produk_id='$id'");
+    
+    // foreach($total_prod as $t):
+    //     echo $t['total_prod'];
+    //     if($t['total_prod']>1){
+    //         $max = ambil_data("SELECT max(harga) as max FROM model_produk WHERE produk_id='$id'");
+    //         $min = ambil_data("SELECT min(harga) as min FROM model_produk WHERE produk_id='$id'");
+    //     }else{
+    //         $min = ambil_data("SELECT min(harga) as min FROM model_produk WHERE produk_id='$id'");
+    //         $max = ambil_data("SELECT max(harga) as max FROM model_produk WHERE produk_id='$id'");
+    //     }
+    // endforeach;
+
 
     if (isset($_POST['submit'])){
         if(tambah($_POST) > 0){
@@ -122,10 +135,7 @@
                                                                 foreach($model as $mdl) :
                                                             ?>  
                                                             
-                                                            <input type="radio" id="<?php echo $mdl['model']; ?>" label="<?php echo $mdl['model']; ?>" value="<?php echo $mdl['model']; ?>" name="model" class="tab-item form-controll" data-target=".halo<?php echo $mdl['model']; ?>">
-                                                            
-                                                            
-                                                            <input type="text" hidden name="model_id" value="<?php echo $mdl['model_produk_id'];?>" >
+                                                            <input type="radio" id="<?php echo $mdl['model']; ?>" label="<?php echo $mdl['model']; ?>" value="<?php echo $mdl['model_produk_id']; ?>" name="model_id" class="tab-item form-controll" data-target=".halo<?php echo $mdl['model']; ?>">
                                                             <input type="text" hidden name="produk_id" value="<?php echo $mdl['produk_id'];?>" >
                                                             <input type="text" hidden name="username" value="<?php echo $username?>">
                                                             <?php endforeach;?>
@@ -141,13 +151,16 @@
                                                 ?>
                                                 <?php echo number_format($min['min'],2,',','.'); ?>
                                                 <?php endforeach;?>
-                                                -
                                                 <?php 
-                                                    foreach($max as $max) :
+                                                foreach($total_prod as $t):
+                                                    if($t['total_prod']>1){
+                                                        foreach($max as $max) :
                                                 ?>
-                                                <?php echo number_format($max['max'],2,',','.'); ?>
+                                                <?php echo "- ".number_format($max['max'],2,',','.'); ?>
                                             </h4>
-                                                <?php endforeach;?>
+                                                <?php   endforeach;
+                                                }
+                                                endforeach;?>
                                             </section>
                                             <?php 
                                                 foreach($model as $mdl) :

@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+    $page = "transaksi";
     require 'controller/transaksiController.php';
 	if(!isset($_SESSION['username'])){
 		header("location:login.php");

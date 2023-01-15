@@ -81,7 +81,7 @@
                                             //ambil data
                                             $produk = ambil_data("SELECT * FROM keranjang 
                                             INNER JOIN gambar_produk on keranjang.produk_id=gambar_produk.produk_id 
-                                            INNER JOIN model_produk on keranjang.produk_id=model_produk.produk_id 
+                                            INNER JOIN model_produk on keranjang.model_id=model_produk.model_produk_id 
                                             INNER JOIN produk on keranjang.produk_id=produk.produk_id 
                                             WHERE gambar_utama=1 AND keranjang_id='$id'");
 
@@ -147,9 +147,16 @@
                                         <label for="alamatLengkap">Alamat Lengkap</label>
                                         <textarea class="form-control" name="alamat" id="alamatLengkap" rows="3"></textarea>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="description" class="form-control-label">Upload Bukti Pembayaran</label>
                                         <input type="file" accept="image/*" name="bukti_tf" class="form-control">
+                                    </div> -->
+                                    <div class="form-group">
+                                        <div class="custom-file">
+                                            <input type="file" required accept="image/*" name="bukti_tf" class="custom-file-input" id="validatedCustomFile" required>
+                                            <label class="custom-file-label" for="validatedCustomFile">Upload Bukti Pembayaran</label>
+                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                        </div>
                                     </div>
                             </div>
                         </div>

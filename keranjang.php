@@ -11,9 +11,9 @@
     //ambil data
     $produk = ambil_data("SELECT * FROM keranjang 
     INNER JOIN gambar_produk on keranjang.produk_id=gambar_produk.produk_id 
-    INNER JOIN model_produk on keranjang.produk_id=model_produk.produk_id 
     INNER JOIN produk on keranjang.produk_id=produk.produk_id 
-    WHERE gambar_utama=1 AND username='$username'");
+    INNER JOIN model_produk on keranjang.model_id=model_produk.model_produk_id 
+    WHERE gambar_utama = 1 AND username='$username'");
     
 ?>
 <?php include 'layouts-frontend/link.php'; ?>
@@ -64,7 +64,7 @@
                                                 </td>
                                                 <td class="">
                                                 <label class="container-check">
-                                                    <input  type="checkbox" name="id[]" value="<?php echo $row['keranjang_id']?>" multiple>
+                                                    <input  type="checkbox" name="id[]" value="<?php echo $row['keranjang_id']?>" multiple checked>
                                                     <span class="checkmark"></span>
                                                 </label>
                                                     <a href="keranjang-delete.php?id=<?php echo $row['keranjang_id']?>" class="btn btn-secondary btn-sm">
@@ -77,7 +77,7 @@
                                         </tbody>
                                     </table>
                                     <div class="form-group">
-                                        <button class="btn primary-btn btn-block" type="submit" name="submit" >Cekout Produk</button>
+                                        <button class="btn primary-btn btn-block" type="submit" name="submit" >Checkout Produk</button>
                                     </div>
                                 </form>
                             </div>

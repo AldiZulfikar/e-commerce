@@ -6,6 +6,7 @@
 	}
 
     //ambil data
+    $page = "detail";
     $produk = ambil_data("SELECT * FROM produk ");
     
     if (isset($_POST['submit'])){
@@ -47,7 +48,7 @@
                     <div class="col-md-12">
                         <div class="card">
                                 <div class="card-header">
-                                    <strong>Tambah Model Produk</strong>
+                                    <strong>Tambah Detail Produk</strong>
                                 </div>
                                 <div class="card-body card-block">
                                     <form action="" method="post">
@@ -60,23 +61,24 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="description" class="form-control-label">Model</label>
+                                            <label for="description" class="form-control-label">Model Produk</label>
                                             <input name="model" required class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="description" class="form-control-label">Harga</label>
+                                            <label for="description" class="form-control-label">Harga Produk</label>
                                             <input name="harga" required type="number" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="description" class="form-control-label">Jumlah</label>
+                                            <label for="description" class="form-control-label">Jumlah Produk</label>
                                             <input name="jumlah" required type="number" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="description" class="form-control-label">Berat (kg)</label>
+                                            <label for="description" class="form-control-label">Berat Produk (kg)</label>
                                             <input name="berat" required type="number" class="form-control">
                                         </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-primary btn-block" type="submit" name="submit" >Tambah Model Produk</button>
+                                        <div class="text-right">
+                                            <a href="./model-produk.php" class="btn btn-secondary">Batal</a>
+                                            <button class="btn btn-primary" type="submit" name="submit" >Submit</button>
                                         </div>
                                     </form>
                                 </div>

@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION['username'])){
     header("location:login.php");
 }
+$page = "produk";
 require 'controller/produkController.php';
 $username = $_SESSION['username'];
 $user = ambil_data("SELECT * FROM users WHERE username = '$username'");
@@ -58,10 +59,12 @@ $user = ambil_data("SELECT * FROM users WHERE username = '$username'");
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class="form-control-label">Deskripsi Produk</label>
-                                    <textarea name="deskripsi" class="ckeditor form-control"></textarea>
+                                    <textarea maxlength="250" name="deskripsi" id="message"  class="ckeditor form-control"></textarea>
+                                    <p id="characterLeft" style="width: 100%;width: 100%;text-align: right;margin-top: -30px;padding-right: 10px;color: #737373;"></p>
                                 </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-block" type="submit" name="submit" >Tambah Produk</button>
+                                <div class="text-right">
+                                    <a href="./produk.php" class="btn btn-secondary">Batal</a>
+                                    <button id="btnSubmit" class="btn btn-primary" type="submit" name="submit" >Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -73,3 +76,23 @@ $user = ambil_data("SELECT * FROM users WHERE username = '$username'");
     </div>
     <!-- /#right-panel -->
     <?php include '../layouts/script.php'; ?> 
+    <script>
+        $(document).ready(function(){ 
+            $('#characterLeft').text('250/250');
+            $('#message').keydown(function () {
+                var max = 250;
+                var len = $(this).val().length;
+                if (len >= max) {
+                    $('#characterLeft').text('0/250');
+                    $('#characterLeft').addClass('red');
+                    $('#btnSubmit').addClass('disabled');            
+                } 
+                else {
+                    var ch = max - len;
+                    $('#characterLeft').text(ch + ' /250');
+                    $('#btnSubmit').removeClass('disabled');
+                    $('#characterLeft').removeClass('red');            
+                }
+            });    
+        });
+    </script>

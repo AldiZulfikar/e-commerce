@@ -6,7 +6,7 @@
 	}
     //ambil data
     $produk = ambil_data("SELECT * FROM model_produk INNER JOIN produk on model_produk.produk_id=produk.produk_id ORDER BY model_produk_id DESC");
-    
+    $page = "detail";
 ?>
 
 
@@ -29,10 +29,13 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Tabel Model Produk</strong>
+                                <strong class="card-title">List Detail Produk</strong>
                             </div>
                             <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <table id="example" class="table table-striped table-bordered">
+                                    <div class="text-right">
+                                        <a href="model-produk-tambah.php" class="btn btn-primary m-3"><i class="menu-icon fa fa-plus"></i> Detail Produk</a>
+                                    </div>
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -57,7 +60,7 @@
                                             <td><?php echo $row['jumlah']?></td>
                                             <td>
                                                 <form action="model-produk-delete.php?id=<?php echo $row['model_produk_id']?>" method="post" class="d-inline">
-                                                    <button class="btn btn-danger btn-sm">
+                                                    <button onclick="return confirm('Anda yakin ingih menghapus?')" data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -90,7 +93,7 @@
     <script src="../assets/js/init/datatables-init.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
+            $('#example').DataTable();
       } );
     </script>
 </body>

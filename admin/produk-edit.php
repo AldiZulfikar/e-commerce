@@ -5,7 +5,7 @@
 		header("location:login.php");
 	}
     $id = $_GET['id'];
-
+    $page = "produk";
     //ambil data
     $produk = ambil_data("SELECT * FROM produk WHERE produk_id = '$id'");
     
@@ -61,10 +61,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="description" class="form-control-label">Deskripsi Produk</label>
-                                            <textarea name="deskripsi" class="ckeditor form-control"><?php echo $row['deskripsi']?></textarea>
+                                            <textarea maxlength="1000" name="deskripsi" id="message" name="deskripsi" class="ckeditor form-control"><?php echo $row['deskripsi']?></textarea>
+                                            <p id="characterLeft" style="width: 100%;width: 100%;text-align: right;margin-top: -30px;padding-right: 10px;color: #737373;"></p>
                                         </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-primary btn-block" type="submit" name="submit" >Ubah Produk</button>
+                                        <div class="text-right">
+                                            <a href="./produk.php" class="btn btn-secondary">Batal</a>
+                                            <button id="btnSubmit" class="btn btn-primary" type="submit" name="submit" >Submit</button>
                                         </div>
                                         <?php endforeach ?>
                                     </form>
@@ -79,3 +81,23 @@
     </div>
     <!-- /#right-panel -->
     <?php include '../layouts/script.php'; ?> 
+    <script>
+        $(document).ready(function(){ 
+            $('#characterLeft').text('1000/1000');
+            $('#message').keydown(function () {
+                var max = 1000;
+                var len = $(this).val().length;
+                if (len >= max) {
+                    $('#characterLeft').text('0/1000');
+                    $('#characterLeft').addClass('red');
+                    $('#btnSubmit').addClass('disabled');            
+                } 
+                else {
+                    var ch = max - len;
+                    $('#characterLeft').text(ch + ' /1000');
+                    $('#btnSubmit').removeClass('disabled');
+                    $('#characterLeft').removeClass('red');            
+                }
+            });    
+        });
+    </script>
