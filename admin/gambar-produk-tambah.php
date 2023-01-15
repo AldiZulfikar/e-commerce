@@ -53,7 +53,7 @@
                                         <div class="form-group">
                                             <div class="custom-file">
                                                 <input type="file" required accept="image/*" name="gambar" class="custom-file-input" id="validatedCustomFile" required>
-                                                <label class="custom-file-label" for="validatedCustomFile">Pilih gambar</label>
+                                                <label class="custom-file-label" for="validatedCustomFile">Pilih gambar (rekomendasi rasio gambar 9:11)</label>
                                                 <div class="invalid-feedback">Example invalid custom file feedback</div>
                                             </div>
                                         </div>

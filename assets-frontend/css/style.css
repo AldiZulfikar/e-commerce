@@ -1213,8 +1213,9 @@ ol {
 }
 
 .product-item .pi-pic img {
-	width: 100%;
-	height: 300px;
+	width: 370px;
+	height: 452px;
+	position: center;
 }
 
 .product-item .pi-pic .sale {
