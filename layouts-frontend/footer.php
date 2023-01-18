@@ -8,9 +8,9 @@
                             <a href="#"><img src="assets-frontend/img/logo-footer.png" alt="" /></a>
                         </div>
                         <ul>
-                            <li>Address: Setra Duta, Bandung</li>
-                            <li>Phone: +628 22081996</li>
-                            <li>Email: aldrinjayasteel@gmail.com</li>
+                            <li>Alamat: Jakarta Raya Indonesia</li>
+                            <li>Telepon: +6283114396043</li>
+                            <li>Email: meilindadwiyanti20@gmail.com</li>
                         </ul>
                         <div class="footer-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -51,7 +51,7 @@
                             <script>
                                 document.write(new Date().getFullYear());
                             </script>
-                            All rights reserved | Aldri Jaya Steel
+                            All rights reserved | Aldrin Jaya Steel
                         </div>
                     </div>
                 </div>

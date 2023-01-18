@@ -10,7 +10,6 @@
     //ambil data
     $produk = ambil_data("SELECT * FROM produk 
     INNER JOIN gambar_produk on produk.produk_id=gambar_produk.produk_id 
-    INNER JOIN model_produk on produk.produk_id=model_produk.produk_id 
     WHERE gambar_utama=1
     ORDER BY produk.produk_id DESC
     LIMIT 4");
@@ -135,7 +134,7 @@
                                                                 foreach($model as $mdl) :
                                                             ?>  
                                                             
-                                                            <input type="radio" id="<?php echo $mdl['model']; ?>" label="<?php echo $mdl['model']; ?>" value="<?php echo $mdl['model_produk_id']; ?>" name="model_id" class="tab-item form-controll" data-target=".halo<?php echo $mdl['model']; ?>">
+                                                            <input type="radio" required id="<?php echo $mdl['model']; ?>" label="<?php echo $mdl['model']; ?>" value="<?php echo $mdl['model_produk_id']; ?>" name="model_id" class="tab-item form-controll" data-target=".halo<?php echo $mdl['model_produk_id']; ?>">
                                                             <input type="text" hidden name="produk_id" value="<?php echo $mdl['produk_id'];?>" >
                                                             <input type="text" hidden name="username" value="<?php echo $username?>">
                                                             <?php endforeach;?>
@@ -165,7 +164,7 @@
                                             <?php 
                                                 foreach($model as $mdl) :
                                             ?>
-                                            <section class="halo<?php echo $mdl['model']; ?> tab-content">
+                                            <section class="halo<?php echo $mdl['model_produk_id']; ?> tab-content">
                                                 Tersisa <?php echo $mdl['jumlah']; ?> buah
                                                 <h4>Rp.<?php echo number_format($mdl['harga'],2,',','.'); ?></h4>
                                             </section>
@@ -217,7 +216,14 @@
                                         <h5><?php echo $row['nama_produk']; ?></h5>
                                     </a>
                                     <div class="product-price">
-                                    Rp.<?php echo number_format($row['harga'],2,',','.'); ?>
+                                    <?php
+                                            $id = $row['produk_id'];
+                                            $min = ambil_data("SELECT min(harga) as min FROM model_produk WHERE produk_id='$id'");
+
+                                            foreach($min as $min) :
+                                        ?>
+                                        Rp.<?php echo number_format($min['min'],2,',','.'); ?>
+                                            <?php endforeach;?>
                                     </div>
                                 </div>
                             </div>

@@ -4,8 +4,7 @@
     //ambil data
     $produk = ambil_data("SELECT * FROM produk 
     INNER JOIN gambar_produk on produk.produk_id=gambar_produk.produk_id 
-    INNER JOIN model_produk on produk.produk_id=model_produk.produk_id 
-    WHERE gambar_utama=1
+    WHERE gambar_utama=1 
     ORDER BY produk.produk_id DESC");
     
 ?>
@@ -88,7 +87,14 @@
                                     <h5><?php echo $row['nama_produk']; ?></h5>
                                 </a>
                                 <div class="product-price">
-                                    Rp.<?php echo number_format($row['harga'],2,',','.'); ?>
+                                <?php
+                                            $id = $row['produk_id'];
+                                            $min = ambil_data("SELECT min(harga) as min FROM model_produk WHERE produk_id='$id'");
+
+                                            foreach($min as $min) :
+                                        ?>
+                                        Rp.<?php echo number_format($min['min'],2,',','.'); ?>
+                                            <?php endforeach;?>
                                 </div>
                             </div>
                         </div>
